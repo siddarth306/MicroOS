@@ -1,0 +1,49 @@
+
+
+print_string:
+   pusha
+    repeat:
+        mov al,[SI]
+        inc SI
+        mov bl,al
+        cmp al,0
+        je next
+        mov ah,0x0e
+        mov al,bl
+        int 0x10 
+        jmp repeat
+    next:
+       popa
+        ret
+        
+print_hex:
+    pusha
+    mov al,'0'
+    mov ah,0x0e
+    int 0x10
+    mov al ,'x'
+    int 0x10
+    mov cx,0x0004
+    shift:
+        mov dx, bx
+        and dl, 0x0f
+        add dl,0x30
+        shr bx,0x0004
+        mov dh,0x00
+        push dx
+        Loop shift
+    mov cx,0x0004
+    print1:
+        pop ax
+        mov ah,0x0e
+        cmp al,0x3a
+        jl p1
+        add al, 0x27
+        p1:int 0x10
+        Loop print1
+    
+   
+    
+    pop bx
+    ret
+
