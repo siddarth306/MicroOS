@@ -1,4 +1,4 @@
 display_library: sdl
-floppya: 1_44=bootsect.bin, status=inserted
+floppya: 1_44=os_image, status=inserted
 boot: a
 mouse: enabled=0

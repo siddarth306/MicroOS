@@ -5,10 +5,10 @@ VIDEO_MEMORY equ 0xb8000
 KERNEL_OFFSET equ 0x1000
 mov bp , 0x9000							;Initializing Stack Location 
 mov sp , bp
-
+mov [ BOOT_DRIVE ] , dl
 mov si , MSG_REAL_MODE
 call print_string 
-
+call load_kernel
 mov ax, 0x2401							;enable A20 lines
 int 0x15
 
@@ -24,7 +24,16 @@ jmp $									; Jump on current instruciton
 %include "pm.asm"
 
 
+[ bits 16]
 
+load_kernel :
+	mov bx , MSG_LOAD_KERNEL
+	call print_string
+	mov bx , KERNEL_OFFSET
+	mov dh , 15
+	mov dl , [ BOOT_DRIVE ]
+	call disk_load
+ret
 
 
 [ bits 32]
@@ -39,9 +48,7 @@ mov si , MSG_PROT_MODE
 call Putstr					; Use our 32 - bit print routine.
 mov si , MSG_PROT_MODE	
 call Putstr	
-
-
-
+call KERNEL_OFFSET
 jmp $
 BOOT_DRIVE db 0
 MSG_REAL_MODE db "Started in 16 - bit Real Mode " , 0
