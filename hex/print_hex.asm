@@ -1,3 +1,4 @@
+[bits 16]
 print_hex:
     pusha
     mov al,'0'
@@ -14,11 +15,19 @@ load_digit:
         shr dx,0x0004
         and dh, 0x0f
         add dh,0x30
+        cmp dh,0x39
+        jle nxt
+        add dh, 0x07
+        nxt:
         mov [si],dh
         inc si
         shl dx,0x0004
         and dh, 0x0f
         add dh,0x30
+        cmp dh,0x39
+        jle nxt2
+        add dh, 0x07
+        nxt2:
         mov [si],dh
         inc si
         mov dh,bl
