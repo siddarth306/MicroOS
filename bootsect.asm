@@ -27,7 +27,7 @@ jmp $									; Jump on current instruciton
 [ bits 16]
 
 load_kernel :
-	mov bx , MSG_LOAD_KERNEL
+	mov si , MSG_LOAD_KERNEL
 	call print_string
 	mov bx , KERNEL_OFFSET
 	mov dh , 15
