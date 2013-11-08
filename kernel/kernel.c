@@ -1,7 +1,9 @@
+
 void main()
 {
 	char *video_memory = (char*)0xb8000 ;
-	*video_memory = 'X';
+	*video_memory = 'y';
+	clear_screen();
 	print_char('H',0 ,0 ,0x0f );
-
+	
 }
