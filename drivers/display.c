@@ -65,6 +65,19 @@ void print_char(char character ,int col , int row , char attribute_byte){
 	
 }
 
+void print_at ( char* message , int col , int row ) {
+if ( col >= 0 && row >= 0) {
+update_cursor( col , row );
+}
+int i = 0;
+while ( message [ i ] != 0) {
+	print_char ( message[i++] , col , row , WHITE_ON_BLACK );
+	}
+}
+
+void print(char* message){
+	print_at(message,-1,-1);
+}
 void clear_screen () {
 int row = 0;
 int col = 0;
