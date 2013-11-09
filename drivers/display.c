@@ -24,7 +24,7 @@ void update_cursor(int row, int col)
     port_byte_out(0x3D5, (unsigned char )((position>>8)&0xFF));
  }
 
-int get_screen_offset(int col , int row){
+int get_screen_offset( int row,int col ){
 
 	CUR_X = row;
 	CUR_Y = col;
@@ -45,7 +45,7 @@ void print_char(char character ,int col , int row , char attribute_byte){
 
 	int offset;
 	if(col >= 0 && row >=0){
-		offset = get_screen_offset(col , row );
+		offset = get_screen_offset(row,col );
 	}
 	else
 		offset = get_cursor();
