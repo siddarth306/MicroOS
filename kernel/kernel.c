@@ -15,6 +15,7 @@ void main()
 	*video_memory = 'y';
 	clear_screen();
 	gdt_install();
+	idt_install();
 	print("Hello World\n");
 	help();
 	
