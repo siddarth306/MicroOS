@@ -11,7 +11,7 @@ void clear()
 }
 
 
-void *memcpy(void *dest, const void *src, size_t count)
+void *memcpy(void *dest, const void *src, Size_t count)
 {
     const char *sp = (const char *)src;
     char *dp = (char *)dest;
@@ -19,23 +19,23 @@ void *memcpy(void *dest, const void *src, size_t count)
     return dest;
 }
 
-void *memset(void *dest, char val, size_t count)
+void *memset(void *dest, char val, Size_t count)
 {
     char *temp = (char *)dest;
     for( ; count != 0; count--) *temp++ = val;
     return dest;
 }
 
-unsigned short *memsetw(unsigned short *dest, unsigned short val, size_t count)
+unsigned short *memsetw(unsigned short *dest, unsigned short val, Size_t count)
 {
     unsigned short *temp = (unsigned short *)dest;
     for( ; count != 0; count--) *temp++ = val;
     return dest;
 }
 
-size_t strlen(const char *str)
+Size_t strlen(const char *str)
 {
-    size_t retval;
+    Size_t retval;
     for(retval = 0; *str != '\0'; str++) retval++;
     return retval;
 }
@@ -51,6 +51,8 @@ void outportb (unsigned short _port, unsigned char _data)
 {
     __asm__ __volatile__ ("outb %1, %0" : : "dN" (_port), "a" (_data));
 }
+
+
 
 int main()
 {
@@ -71,7 +73,9 @@ int main()
 
 
     int i;
-
+    
+        keyboard_handler();
+    
     
 
     //puts("Hello World!\n");

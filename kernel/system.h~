@@ -5,7 +5,7 @@
 *  Notes: No warranty expressed or implied. Use at own risk. */
 #ifndef __SYSTEM_H
 #define __SYSTEM_H
-#include "=<stdbool.h>
+#include <stdbool.h>
 typedef int size_t;
 
 /* This defines what the stack looks like after an ISR was running */
@@ -426,7 +426,7 @@ static int _keyboard_scancode[] = {
 
 
 
-void keyboard_handler(struct regs *r);
+void keyboard_handler();
 void keyboard_install();
 
 

@@ -2,12 +2,12 @@
 #include "../kernel/system.h"
 
 
-int timer_ticks = 0;
+int timer_ticks = 0,secs=0;
 void timer_handler(struct regs *r)
 { 
     timer_ticks++;
     if (timer_ticks % 18 == 0)
-        print("One second has passed\n");
+        secs++;
 }
 
 
@@ -17,6 +17,7 @@ void timer_wait(int ticks)
     eticks = timer_ticks + ticks;
     while(timer_ticks < eticks);
 }
+
 
 
 void timer_install()
