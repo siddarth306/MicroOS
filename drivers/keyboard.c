@@ -135,10 +135,10 @@ void keyboard_handler()
         c = '\b';
         print("\b");
     }
-    else if(scancode == 0x0f)
+    else if(scancode == 0x0f) // Tab
     {
         c = '\t';
-        print("        ");
+        print("    ");
     }
     else if(scancode == 0x010)
     {
@@ -162,7 +162,7 @@ void keyboard_handler()
     }
     else if(scancode == 0x14)
     {
-        c = kbdus[scancode];
+        c = 't';
         print("t");
     }
     else if(scancode == 0x15)
@@ -228,7 +228,7 @@ void keyboard_handler()
     }
     else if(scancode == 0x22)
     {
-        c = 'p';
+        c = 'g';
         print("g");
     }
     else if(scancode == 0x23)
@@ -248,8 +248,7 @@ void keyboard_handler()
     }
     else if(scancode == 0x26)
     {
-        ip_arr[i] = 'l';
-        i++;
+        c = 'l';
         print("l");
     }
     else if(scancode == 0x27)
@@ -327,10 +326,18 @@ void keyboard_handler()
    
     if(valid)
     {
-        
-    cmd[cmd_length] = c;
-    cmd_length++;
-    valid = 0;
+        if(c == '\t')
+            for(i = 0; i<4; i++)
+            {
+                cmd[cmd_length] = ' ';
+                cmd_length++;
+            }
+        else
+        {
+            cmd[cmd_length] = c;
+            cmd_length++;
+        }   
+        valid = 0;
     }
     if (c=='\n')
     {
@@ -338,7 +345,7 @@ void keyboard_handler()
     cmd[cmd_length] = '\0';
     cmd_length=0;
     shell(cmd);
-    //print(cmd);
+    print(cmd);
     
     print("\nmicroOs>> ");
     }
