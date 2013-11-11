@@ -53,5 +53,5 @@ void gdt_install()
 
     /* Flush out the old GDT and install the new changes! */
     gdt_flush();
-     print("GDT Installed \n");
+     print("\nGDT Installed.....");
 }

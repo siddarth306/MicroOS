@@ -56,27 +56,28 @@ void outportb (unsigned short _port, unsigned char _data)
 
 int main()
 {
-    
+    unsigned char c, d[10] ;
+    c = 'a';
 	char *video_memory = (char*)0xb8000 ;
 	*video_memory = 'y';
 	clear_screen();
-	gdt_install();
-	idt_install();
-	isrs_install();
-	irq_install();
+	print("\n          MicroOS             \n");
 	timer_install();
-	print("Hello World\n");
 	keyboard_install();
-	help();
+    gdt_install();
+    idt_install();
+    isrs_install();
+    irq_install();
+    print("\n-----------------------------------");
+    print("\nmicroOS>> ");
+	
 	//putch();
 	__asm__ __volatile__ ("sti");
-
-
-    int i;
+    
     
         keyboard_handler();
-    
-    
+        
+        
 
     //puts("Hello World!\n");
 

@@ -66,3 +66,6 @@ void keyboard_install();
 extern void keyboard_install();
 
 #endif
+
+// Shell
+void shell(char cmd);

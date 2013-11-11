@@ -22,5 +22,6 @@ void timer_wait(int ticks)
 
 void timer_install()
 {
+	print("\nTimer has started....");
     irq_install_handler(0, timer_handler);
 }

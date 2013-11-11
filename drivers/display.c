@@ -36,7 +36,38 @@ int get_cursor(){
 	return ((CUR_X * 80) + CUR_Y ) *2 ;
 }
 
-void print_char(char character ,int col , int row , char attribute_byte){
+void printch(unsigned char character )
+{
+	char attribute_byte;
+	unsigned char *vidmem = ( unsigned char *) VIDEO_ADDRESS ;
+	int offset;
+	attribute_byte = WHITE_ON_BLACK;
+	offset = get_cursor();
+	if(character == '\n'){
+		CUR_Y =0;
+		CUR_X++;
+		offset = get_screen_offset(CUR_X , CUR_Y );
+	}
+	else if(character == '\b'){
+		
+		vidmem[offset-2] = ' ';
+		CUR_Y--;
+		vidmem[offset+1]=attribute_byte;
+		offset = get_screen_offset(CUR_X , CUR_Y );
+
+		update_cursor(CUR_X,CUR_Y);
+
+	}
+	else{
+		CUR_Y++;
+		vidmem[offset] = character;
+		vidmem[offset+1]=attribute_byte;
+	}
+
+	update_cursor(CUR_X,CUR_Y);
+	
+}
+void print_char(unsigned char character ,int col , int row , char attribute_byte){
 
 	unsigned char *vidmem = ( unsigned char *) VIDEO_ADDRESS ;
 	if(!attribute_byte){
@@ -54,6 +85,16 @@ void print_char(char character ,int col , int row , char attribute_byte){
 		CUR_Y =0;
 		CUR_X++;
 		offset = get_screen_offset(CUR_X , CUR_Y );
+	}
+	else if(character == '\b'){
+		
+		vidmem[offset-2] = ' ';
+		CUR_Y--;
+		vidmem[offset+1]=attribute_byte;
+		offset = get_screen_offset(CUR_X , CUR_Y );
+
+		update_cursor(CUR_X,CUR_Y);
+
 	}
 	else{
 		CUR_Y++;
