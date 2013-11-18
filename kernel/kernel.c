@@ -11,7 +11,7 @@ void clear()
 }
 
 
-void *memcpy(void *dest, const void *src, Size_t count)
+void *memcpy(void *dest, const void *src, int count)
 {
     const char *sp = (const char *)src;
     char *dp = (char *)dest;
@@ -53,7 +53,6 @@ void outportb (unsigned short _port, unsigned char _data)
 }
 
 
-
 int main()
 {
     unsigned char c, d[10] ;
@@ -69,6 +68,7 @@ int main()
     isrs_install();
     irq_install();
     print("\n-----------------------------------");
+    while(1){
     print("\nmicroOS>> ");
 	
 	//putch();
@@ -77,7 +77,7 @@ int main()
     
         keyboard_handler();
         
-        
+        }
 
     //puts("Hello World!\n");
 

@@ -349,10 +349,10 @@ void keyboard_handler()
     
     cmd[cmd_length] = '\0';
     cmd_length=0;
-    shell(cmd);
+    //shell(cmd);
     print(cmd);
     
-    print("\nmicroOs>> ");
+    //print("\nmicroOs>> ");
     }
     c=0;
    

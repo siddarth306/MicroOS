@@ -68,4 +68,4 @@ extern void keyboard_install();
 #endif
 
 // Shell
-void shell(char cmd);
+void shell(char* cmd);
