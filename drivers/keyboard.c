@@ -258,13 +258,18 @@ void keyboard_handler()
     }
     else if(scancode == 0x28)
     {
-       c = '\\';
-       print("\\");
+       c = '\'';
+       print("'");
     }
     else if(scancode == 0x29)
     {
-        c = '\'';
-        print("\'");
+        c = '`';
+        print("`");
+    }
+    else if(scancode == 0x2b)
+    {
+        c = '\\';
+        print("\\");
     }
     else if(scancode == 0x2c)
     {
