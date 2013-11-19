@@ -27,17 +27,3 @@ void strreverse(char *msg){
 	//return msg;
 }
 
-int strcmp(char* m1,char* m2){
-
-	int len1 = strlen(m1);
-	int len2 = strlen(m2);
-	int i=0;
-	if(len1!=len2)
-		return -1;
-
-	for(i=0;i<len1;i++){
-		if(m1[i]!=m2[i])
-			return -1;
-	}
-	 return 0;
-}

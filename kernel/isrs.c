@@ -41,15 +41,6 @@ extern void isr29();
 extern void isr30();
 extern void isr31();
 
-/* This is a very repetitive function... it's not hard, it's
-*  just annoying. As you can see, we set the first 32 entries
-*  in the IDT to the first 32 isrs. We can't use a for loop
-*  for this, because there is no way to get the function names
-*  that correspond to that given entry. We set the access
-*  flags to 0x8E. This means that the entry is present, is
-*  running in ring 0 (kernel level), and has the lower 5 bits
-*  set to the required '14', which is represented by 'E' in
-*  hex. */
 void isrs_install()
 {
     idt_set_gate(0, (unsigned)isr0, 0x08, 0x8E);

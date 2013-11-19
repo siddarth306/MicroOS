@@ -2,7 +2,12 @@
 #include "../drivers/display.h"
 void help()
 {
-	print("Hi");
+	print("\nWelcome to MicroOS");
+    print("\nT.E. Mini Project");
+    print("\nGroup D10\n 39 - Shashi Bhushan Mishra");
+    print("\n43 - Siddharth Kumar");
+    print("\n44 - Saurabh Somani");
+    
 }
 
 void clear()
@@ -57,16 +62,17 @@ int main()
 {
     unsigned char c, d[10] ;
     c = 'a';
+    char cmd[10];
 	char *video_memory = (char*)0xb8000 ;
 	*video_memory = 'y';
 	clear_screen();
 	print("\n          MicroOS             \n");
 	timer_install();
-	keyboard_install();
     gdt_install();
     idt_install();
     isrs_install();
     irq_install();
+    keyboard_install();
     print("\n-----------------------------------");
     while(1){
     print("\nmicroOS>> ");
@@ -75,7 +81,9 @@ int main()
 	__asm__ __volatile__ ("sti");
     
     
-        keyboard_handler();
+       getcmd(cmd,10);
+       //print(cmd);
+       shell(cmd);
         
         }
 

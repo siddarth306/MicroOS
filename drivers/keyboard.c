@@ -44,8 +44,14 @@ unsigned char kbdus[128] =
     0,  /* F12 Key */
     0,  /* All other keys are undefined */
 };
+unsigned char c=0,x;
+char get_last_key(){
+    return c;
+}
 
-
+void discard_last_key(){
+    c=0;    
+}
 void clear_cmd(char cmd[])
 {
     int i=0;
@@ -61,11 +67,10 @@ void keyboard_handler()
 	int i=0,j =0,valid=0,inst=0;
     unsigned char ip_arr[100] = {'\0'};
     char ip_ptr;
-    unsigned char c,x;
+    
     unsigned int scancode,key;
     unsigned short temp;
-   // kkybrd_reset_system ();
-   
+     
     scancode = inportb(0x60);
     key = scancode;
     if(scancode < 0x36)
@@ -73,263 +78,263 @@ void keyboard_handler()
     if (scancode == 0x02)
     {
         c = '1';
-        print("1");
+        //print("1");
     }
     else if(scancode == 0x03)
     {
         c = '2';
-        print("2");
+        //print("2");
     }
     else if(scancode == 0x04)
     {
         c = '3';
-        print("3");
+        //print("3");
     }
     else if(scancode == 0x05)
     {
         c = '4';
-        print("4");
+        //print("4");
     }
     else if(scancode == 0x06)
     {
         c = '5';
-        print("5");
+        //print("5");
     }
     else if(scancode == 0x07)
     {
         c = '6';
-        print("6");
+        //print("6");
     }
     else if(scancode == 0x08)
     {
         c = '7';
-        print("7");
+        //print("7");
     }
     else if(scancode == 0x09)
     {
         c = '8';
-        print("8");
+        //print("8");
     }
     else if(scancode == 0x0a)
     {
         c = '9';
-        print("9");
+        //print("9");
     }
     else if(scancode == 0x0b)
     {
         c = '0';
-        print("0");
+        //print("0");
     }
     else if(scancode == 0x0c)
     {
         c = '-';
-        print("-");
+        //print("-");
     }
     else if(scancode == 0x0d)
     {
         c = '=';
-        print("=");
+        //print("=");
     }
     else if(scancode == 0x0e) //Backspace
     {
         c = '\b';
-        print("\b");
+        //print("\b");
     }
     else if(scancode == 0x0f) // Tab
     {
         c = '\t';
-        print("    ");
+        //print("    ");
     }
     else if(scancode == 0x010)
     {
         c = 'q';
-        print("q");
+        //print("q");
     }
     else if(scancode == 0x11)
     {
         c = 'w';
-        print("w");
+        //print("w");
     }
     else if(scancode == 0x12)
     {
         c = 'e';
-        print("e");
+        //print("e");
     }
     else if(scancode == 0x13)
     {
         c = 'r';
-        print("r");
+        //print("r");
     }
     else if(scancode == 0x14)
     {
         c = 't';
-        print("t");
+        //print("t");
     }
     else if(scancode == 0x15)
     {
         c = 'y';
-        print("y");
+        //print("y");
     }
     else if(scancode == 0x16)
     {
         c = 'u';
-        print("u");
+        //print("u");
     }
     else if(scancode == 0x17)
     {
         c = 'i';
-        print("i");
+        //print("i");
     }
     else if(scancode == 0x18)
     {
         c = 'o';
-        print("o");
+        //print("o");
     }
     else if(scancode == 0x19)
     {
         c = 'p';
-        print("p");
+        //print("p");
     }
     else if(scancode == 0x1a)
     {
         c = '[';
-        print("[");
+        //print("[");
     }
     else if(scancode == 0x1b)
     {
         c = ']';
-        print("]");
+        //print("]");
     }
     else if(scancode == 0x1c) //Enter
     {
         valid = 0;
         c = '\n';
-        print("\n");
+        //print("\n");
     }
     else if(scancode == 0x1e)
     {
         c = 'a';
-        print("a");
+        //print("a");
     }
     else if(scancode == 0x1f)
     {
         c = 's';
-        print("s");
+        //print("s");
     }
     else if(scancode == 0x20)
     {
         c = 'd';
-        print("d");
+        //print("d");
     }
     else if(scancode == 0x21)
     {
         c = 'f';
-        print("f");
+        //print("f");
     }
     else if(scancode == 0x22)
     {
         c = 'g';
-        print("g");
+        //print("g");
     }
     else if(scancode == 0x23)
     {
         c = 'h';
-        print("h");
+        //print("h");
     }
     else if(scancode == 0x24)
     {
         c = 'j';
-        print("j");
+        //print("j");
     }
     else if(scancode == 0x25)
     {
         c = 'k';
-        print("k");
+        //print("k");
     }
     else if(scancode == 0x26)
     {
         c = 'l';
-        print("l");
+        //print("l");
     }
     else if(scancode == 0x27)
     {
         c = ';';
-        print(";");
+        //print(";");
     }
     else if(scancode == 0x28)
     {
        c = '\'';
-       print("'");
+       //print("'");
     }
     else if(scancode == 0x29)
     {
         c = '`';
-        print("`");
+        //print("`");
     }
     else if(scancode == 0x2b)
     {
         c = '\\';
-        print("\\");
+        //print("\\");
     }
     else if(scancode == 0x2c)
     {
         c = 'z';
-        print("z");
+        //print("z");
     }
     else if(scancode == 0x2d)
     {
         c = 'x';
-        print("x");
+        //print("x");
     }
     else if(scancode == 0x2e)
     {
         c = 'c';
-        print("c");
+        //print("c");
     }
     else if(scancode == 0x2f)
     {
         c = 'v';
-        print("v");
+        //print("v");
     }
     else if(scancode == 0x30)
     {
         c = 'b';
-        print("b");
+        //print("b");
     }
     else if(scancode == 0x31)
     {
         c = 'n';
-        print("n");
+        //print("n");
     }
     else if(scancode == 0x32)
     {
         c = 'm';
-        print("m");
+        //print("m");
     }
     else if(scancode == 0x33)
     {
         c = ',';
-        print(",");
+        //print(",");
     }
     else if(scancode == 0x34)
     {
         c = '.';
-        print(".");
+        //print(".");
     }
     else if(scancode == 0x35)
     {
         c = '/';
-        print("/");
+        //print("/");
     }
     else if(scancode == 0x39)
     {
         c = ' ';
-        print(" ");
+        //print(" ");
     }
     
     
    
-    if(valid)
+   /* if(valid)
     {
         if(c == '\t')
             for(i = 0; i<4; i++)
@@ -350,12 +355,12 @@ void keyboard_handler()
     cmd[cmd_length] = '\0';
     cmd_length=0;
     //shell(cmd);
-    print(cmd);
+    //print(cmd);
     
-    //print("\nmicroOs>> ");
+    ////print("\nmicroOs>> ");
     }
     c=0;
-   
+   */
     outportb(0x20,0x20);
     
 }   

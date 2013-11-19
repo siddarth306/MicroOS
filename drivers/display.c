@@ -1,10 +1,8 @@
 
-# define VIDEO_ADDRESS 0xb8000
+# define VIDEO_ADDRESS 0xb8000 // Video Memory
 # define MAX_ROWS 25
 # define MAX_COLS 80
-// Attribute byte for our default colour scheme .
-# define WHITE_ON_BLACK 0x0f
-// Screen device I / O ports
+# define WHITE_ON_BLACK 0x0f // Attribute byte
 # define REG_SCREEN_CTRL 0x3D4
 # define REG_SCREEN_DATA 0x3D5
 
@@ -12,14 +10,12 @@ int CUR_X=0;
 int CUR_Y=0;
 
 
-void update_cursor(int row, int col)
+void update_cursor(int row, int col)  // updates Cursor Position
  {
     unsigned short position=(row*80) + col;
  
-    // cursor LOW port to vga INDEX register
     port_byte_out(0x3D4, 0x0F);
     port_byte_out(0x3D5, (unsigned char)(position&0xFF));
-    // cursor HIGH port to vga INDEX register
     port_byte_out(0x3D4, 0x0E);
     port_byte_out(0x3D5, (unsigned char )((position>>8)&0xFF));
  }
@@ -34,7 +30,8 @@ void set_cursor(int offset)
     port_byte_out(0x3D5, (unsigned char )((position>>8)&0xFF));
  }
 
-int get_screen_offset( int row,int col ){
+int get_screen_offset( int row,int col) // Returns offset to the video memory
+{
 
 	CUR_X = row;
 	CUR_Y = col;
@@ -50,30 +47,28 @@ int get_cursor(){
 
 int handle_scrolling( int cursor_offset ) {
 
-int i ;
-if ( cursor_offset < MAX_ROWS * MAX_COLS *2) {
-return cursor_offset ;
+	int i ;
+	if ( cursor_offset < MAX_ROWS * MAX_COLS *2) {
+	return cursor_offset ;
+	}
+
+
+	for ( i =1; i < MAX_ROWS ; i++) {
+	memcpy ( get_screen_offset(i-1 , 0 ) + VIDEO_ADDRESS,
+		get_screen_offset(i ,0) + VIDEO_ADDRESS ,
+		MAX_COLS *2
+		);
+	}
+
+	char *last_line = get_screen_offset(MAX_ROWS -1,0) + VIDEO_ADDRESS ;
+	for ( i =0; i < MAX_COLS *2; i ++) {
+		last_line [ i ] = 0;
+	}
+
+	cursor_offset -= 2* MAX_COLS ;
+
+	return cursor_offset ;
 }
-
-
-for ( i =1; i < MAX_ROWS ; i++) {
-memcpy ( get_screen_offset(i-1 , 0 ) + VIDEO_ADDRESS,
-	get_screen_offset(i ,0) + VIDEO_ADDRESS ,
-	MAX_COLS *2
-	);
-}
-
-char *last_line = get_screen_offset(MAX_ROWS -1,0) + VIDEO_ADDRESS ;
-for ( i =0; i < MAX_COLS *2; i ++) {
-	last_line [ i ] = 0;
-}
-
-cursor_offset -= 2* MAX_COLS ;
-// Return the updated cursor position .
-return cursor_offset-1 ;
-}
-
-
 
 
 
@@ -134,15 +129,15 @@ void print_at ( char* message , int col , int row ) {
 void print(char* message){
 	print_at(message,-1,-1);
 }
+
 void clear_screen () {
-int row = 0;
-int col = 0;
-/* Loop through video memory and write blank characters . */
-for ( row =0; row < MAX_ROWS ; row++) {
-	for ( col =0; col < MAX_COLS ; col++) {
-		print_char( ' ' , col , row , WHITE_ON_BLACK );
+	int row = 0;
+	int col = 0;
+	for ( row =0; row < MAX_ROWS ; row++) {
+		for ( col =0; col < MAX_COLS ; col++) {
+			print_char( ' ' , col , row , WHITE_ON_BLACK );
+			}
 		}
-	}
-	CUR_X=CUR_Y=0;
-	update_cursor(0,0);
+		CUR_X=CUR_Y=0;
+		update_cursor(0,0);
 }
