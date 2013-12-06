@@ -7,7 +7,8 @@ void help()
     print("\nGroup D10\n 39 - Shashi Bhushan Mishra");
     print("\n43 - Siddharth Kumar");
     print("\n44 - Saurabh Somani");
-    
+    print("\n47 - Yashodhan Tak ");
+        
 }
 
 void clear()
@@ -15,6 +16,10 @@ void clear()
 	clear_screen();
 }
 
+void echo(char* cmd){
+
+    print(cmd);
+}
 
 void *memcpy(void *dest, const void *src, int count)
 {
@@ -76,7 +81,8 @@ int main()
     print("\n-----------------------------------");
     while(1){
     print("\nmicroOS>> ");
-	
+    
+
 	//putch();
 	__asm__ __volatile__ ("sti");
     

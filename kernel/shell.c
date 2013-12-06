@@ -58,7 +58,9 @@ void shell(char* cmd)
         help();
     else if(strcmp(cmd,"clear")==0)
         clear_screen();
+    else if(strcmp(cmd,"echo")==0)
+    	echo(cmd);
     else
-        print("Invalid Command\n");
+        print("\nInvalid Command\n");
 	
 }

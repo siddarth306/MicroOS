@@ -73,7 +73,7 @@ void keyboard_handler()
      
     scancode = inportb(0x60);
     key = scancode;
-    if(scancode < 0x36)
+    if(scancode < 0x39)
         valid = 1;
     if (scancode == 0x02)
     {
@@ -332,35 +332,7 @@ void keyboard_handler()
         //print(" ");
     }
     
-    
-   
-   /* if(valid)
-    {
-        if(c == '\t')
-            for(i = 0; i<4; i++)
-            {
-                cmd[cmd_length] = ' ';
-                cmd_length++;
-            }
-        else
-        {
-            cmd[cmd_length] = c;
-            cmd_length++;
-        }   
-        valid = 0;
-    }
-    if (c=='\n')
-    {
-    
-    cmd[cmd_length] = '\0';
-    cmd_length=0;
-    //shell(cmd);
-    //print(cmd);
-    
-    ////print("\nmicroOs>> ");
-    }
-    c=0;
-   */
+  
     outportb(0x20,0x20);
     
 }   

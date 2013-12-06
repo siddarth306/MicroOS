@@ -1,13 +1,6 @@
-/* bkerndev - Bran's Kernel Development Tutorial
-*  By:   Brandon F. (friesenb@gmail.com)
-*  Desc: Interrupt Service Routines installer and exceptions
-*
-*  Notes: No warranty expressed or implied. Use at own risk. */
+
 #include "system.h"
 
-/* These are function prototypes for all of the exception
-*  handlers: The first 32 entries in the IDT are reserved
-*  by Intel, and are designed to service exceptions! */
 extern void isr0();
 extern void isr1();
 extern void isr2();

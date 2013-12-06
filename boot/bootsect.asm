@@ -23,7 +23,6 @@ jmp $									; Jump on current instruciton
 %include "disk_load.asm"
 %include "pm.asm"
 
-
 [ bits 16]
 
 load_kernel :
@@ -42,7 +41,6 @@ BEGIN_PM :
 	push	ax
 	mov	al, 2
 	out	0x92, al
-
 
 mov si , MSG_PROT_MODE	
 call Putstr					; Use our 32 - bit print routine.
