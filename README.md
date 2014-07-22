@@ -28,7 +28,7 @@ Installation :
     sudo apt-get install bochs-sdl
 ```
 
-Compiling and Run:
+Compile and Run:
 ----------------------
 ``` 
     >>cd MicroOs
