@@ -7,9 +7,9 @@ keyboard, and a basic shell.
 
 Developed by :
 ------------------------
-Shashi Bhushan Mishra - shashi.mishra43@gmail.com
-
 Siddharth Kumar - siddharth306@gmail.com
+
+Shashi Bhushan Mishra - shashi.mishra43@gmail.com
 
 
 Installation :
