@@ -10,10 +10,10 @@ os-image: boot/bootsect.bin kernel.bin
 	cat $^ > os-image
 
 kernel.bin: kernel/kernel_entry.o ${OBJ}
-	ld -o $@ -Ttext 0x1000 $^ --oformat binary
+	ld -melf_i386 -o $@ -Ttext 0x1000 $^ --oformat binary
 
 %.o: %.c ${ HEADERS }
-	gcc -ffreestanding -c $< -o $@
+	gcc -m32 -ffreestanding -c $< -o $@
 
 %.o: %.asm
 	nasm $< -f elf -o $@
