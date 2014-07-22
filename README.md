@@ -7,7 +7,7 @@ keyboard, and a basic shell.
 
 Developed by :
 ------------------------
-Siddharth Kumar - siddharth306@gmail.com
+Siddharth Kumar - siddarth306@gmail.com
 
 Shashi Bhushan Mishra - shashi.mishra43@gmail.com
 
